@@ -1,10 +1,19 @@
-import { useState } from 'react';
-import axios from 'axios';
-import BookCreate from './components/BookCreate';
-import BookList from './components/BookList';
+import { useState } from "react";
+import axios from "axios";
+import BookCreate from "./components/BookCreate";
+import BookList from "./components/BookList";
 
 function App() {
   const [books, setBooks] = useState([]);
+
+  const fetchBooks = async () => {
+    const response = await axios.get("http://localhost:3001/books");
+
+    setBooks(response.data);
+  };
+
+  // DON'T
+  // fetchBooks();
 
   const editBookById = (id, newTitle) => {
     const updatedBooks = books.map((book) => {
@@ -27,7 +36,7 @@ function App() {
   };
 
   const createBook = async (title) => {
-    const response = await axios.post('http://localhost:3001/books', {
+    const response = await axios.post("http://localhost:3001/books", {
       title,
     });
 
