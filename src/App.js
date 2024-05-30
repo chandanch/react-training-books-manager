@@ -12,7 +12,6 @@ function App() {
     setBooks(response.data);
   };
 
-  // DON'T
   // fetchBooks();
 
   const editBookById = (id, newTitle) => {
